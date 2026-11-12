@@ -1,61 +1,63 @@
 # AGNES Video 2.5 Prompt Skill
 
-面向 AGNES AI 视频生成的提示词创作技能包。支持 **Text、Keyframe、Reference** 三种生成模式，帮助用户把创意和参考素材整理成清晰、连贯、可直接使用的视频提示词。
+AGNES AI 视频生成提示词创作技能包，支持 **Text、Keyframe、Reference** 三种生成模式。
 
 - 当前版本：**v1.0.0**
 - 许可证：**MIT**
-- 语言：中文提示词说明
-- 适用方向：人物剧情、动物视频、产品展示、图片转视频、参考视频重构
+- 主要语言：中文
+- 适用场景：人物剧情、动物视频、产品展示、图片转视频、参考视频重构
 
 ## 核心能力
 
 | 模式 | 用途 | 核心控制点 |
 |---|---|---|
 | Text | 文生视频 | 主体、场景、动作、镜头、风格、声音 |
-| Keyframe | 首尾帧控制 | 起始状态、动作过程、结束状态、画面连续性 |
-| Reference | 多模态参考 | 图片、音频、视频素材及其具体用途 |
+| Keyframe | 首尾帧控制 | 起始状态、动作过程、结束状态、连续性 |
+| Reference | 多模态参考 | 图片、音频、视频及其具体用途 |
 
-Reference 模式素材数量约束：
+Reference 素材数量限制：
 - 图片最多 5 张
 - 音频最多 3 段
 - 视频最多 1 个
 
-提示词必须说明每个参考素材的用途，不能只上传素材而不指定作用。
+每份参考素材都必须在提示词中说明用途，不能只上传素材而不指定作用。
 
 ## 仓库结构
 
 ```text
 agnes-video-2.5-prompt-skill/
-├── SKILL.md
+├── SKILL.md                         # 便于直接阅读的技能说明
 ├── README.md
 ├── LICENSE
 ├── CHANGELOG.md
-└── examples/
-    ├── text-to-video.md
-    ├── keyframe.md
-    └── reference.md
+├── examples/
+│   ├── text-to-video.md
+│   ├── keyframe.md
+│   └── reference.md
+└── skills/
+    └── agnes-video-2-5-prompt-skill/
+        └── SKILL.md                 # 标准 Agent Skill 入口
 ```
 
-## 快速开始
+## 快速使用
 
-1. 打开并阅读根目录的 [SKILL.md](./SKILL.md)。
-2. 将 Skill 全文提供给兼容 Skill 的 AI 助手，或按该工具的 Skill 安装规范放入对应目录。
-3. 描述你要生成的视频主题、时长、画幅和风格。
-4. 如果使用 Reference 模式，上传素材并说明每份素材的用途。
-5. 检查生成的完整提示词，再复制到 AGNES 使用。
+### 方式一：直接使用提示词规范
 
-本仓库提供的是提示词创作规范和案例，不包含 AGNES API 调用程序，也不代替 AGNES 平台自身的参数与内容限制。
+打开根目录的 [SKILL.md](./SKILL.md)，复制完整内容，提供给支持自定义指令或 Skill 的 AI 助手。
 
-## 示例
+### 方式二：按 Agent Skills 文件夹格式安装
 
-- [Text 文生视频示例](./examples/text-to-video.md)
-- [Keyframe 首尾帧示例](./examples/keyframe.md)
-- [Reference 多模态参考示例](./examples/reference.md)
+标准 Skill 是一个包含 `SKILL.md` 的文件夹。本仓库已提供：
+
+`skills/agnes-video-2-5-prompt-skill/`
+
+将这个文件夹复制到你所使用的 AI 工具所支持的 Skills 目录。不同工具的安装目录和启用方式可能不同，请以该工具官方文档为准。安装后确认工具能够发现该 Skill，并在提出 AGNES 视频提示词创作任务时调用它。
+
+> 本仓库不保证所有 AI 客户端都原生支持 Agent Skills；不支持该格式的工具可以使用方式一手动加载。
 
 ## 提示词设计框架
 
-Skill 采用六个核心维度组织复杂提示词：
-
+复杂任务采用六个核心维度：
 1. 主体与场景
 2. 动作与变化
 3. 镜头语言
@@ -63,25 +65,21 @@ Skill 采用六个核心维度组织复杂提示词：
 5. 声音与节奏
 6. 一致性要求
 
-简单任务可以精简，复杂任务应明确动作顺序、镜头变化和主体连续性。
+简单任务可以精简；复杂任务应明确动作顺序、镜头变化和主体连续性。
 
-## 素材占位符
+## 案例
 
-Reference 模式使用以下占位符，并逐一说明用途：
+- [Text 文生视频示例](./examples/text-to-video.md)
+- [Keyframe 首尾帧示例](./examples/keyframe.md)
+- [Reference 多模态参考示例](./examples/reference.md)
 
-- 图片：`<Picture 1>` 至 `<Picture 5>`
-- 音频：`<Audio 1>` 至 `<Audio 3>`
-- 视频：`<Video 1>`
+## 版本与更新
 
-只使用用户实际提供的素材，不得虚构素材或编号。
+查看 [CHANGELOG.md](./CHANGELOG.md)。正式版本请前往 GitHub Releases 页面。
 
-## 版本记录
+## 反馈与贡献
 
-查看 [CHANGELOG.md](./CHANGELOG.md)。
-
-## 参与改进
-
-欢迎提交问题反馈、提示词案例和改进建议。提交案例时请说明生成模式、素材用途、目标时长及希望解决的问题；不要上传未经授权的第三方素材。
+欢迎通过 GitHub Issues 提交问题、改进建议和提示词案例。提交案例时请说明生成模式、素材用途、目标时长及希望解决的问题。请勿上传未经授权的第三方素材。
 
 ## License
 
