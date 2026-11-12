@@ -2,7 +2,7 @@
 
 AGNES AI 视频生成提示词创作技能包，支持 **Text、Keyframe、Reference** 三种生成模式。
 
-- 当前版本：**v1.0.0**
+- 当前版本：**v1.0.1**
 - 许可证：**MIT**
 - 主要语言：中文
 - 适用场景：人物剧情、动物视频、产品展示、图片转视频、参考视频重构
@@ -15,12 +15,13 @@ AGNES AI 视频生成提示词创作技能包，支持 **Text、Keyframe、Refer
 | Keyframe | 首尾帧控制 | 起始状态、动作过程、结束状态、连续性 |
 | Reference | 多模态参考 | 图片、音频、视频及其具体用途 |
 
-Reference 素材数量限制：
-- 图片最多 5 张
+Reference 素材数量与模型兼容性：
+- 图片最多 5 张（基础版与 Flash 版统一采用此上限）
 - 音频最多 3 段
-- 视频最多 1 个
+- `agnes-video-2.5`（基础版）最多支持 1 个视频参考
+- `agnes-video-2.5-flash` 不支持视频参考
 
-每份参考素材都必须在提示词中说明用途，不能只上传素材而不指定作用。
+每份参考素材都必须在提示词中说明用途，不能只上传素材而不指定作用。使用 Flash 时，不得安排或引用 `<Video 1>`；如需表现视频中的动作，可改用图片关键帧参考或文字拆解动作。
 
 ## 仓库结构
 
@@ -71,7 +72,8 @@ agnes-video-2.5-prompt-skill/
 
 - [Text 文生视频示例](./examples/text-to-video.md)
 - [Keyframe 首尾帧示例](./examples/keyframe.md)
-- [Reference 多模态参考示例](./examples/reference.md)
+- [Reference 多模态参考示例（基础版）](./examples/reference.md)
+- [Reference 多模态参考示例（Flash 版，无视频参考）](./examples/reference-flash.md)
 
 ## 版本与更新
 
